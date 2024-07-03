@@ -1,4 +1,4 @@
-import dash
+'''import dash
 from dash import dcc, html, Input, Output, State
 import plotly.graph_objects as go
 import pandas as pd
@@ -183,3 +183,4 @@ external_css = [
     },
     "assets/style.css",  # Arquivo CSS local com estilos personalizados
 ]
+'''

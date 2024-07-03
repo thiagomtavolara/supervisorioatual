@@ -123,5 +123,5 @@ nome_banco_de_dados = 'dados_experimentos.db'
 nome_tabela = '"27-06-2024"'  # Ajuste conforme necessário
 
 #criar_banco_dados(nome_banco_de_dados, nome_tabela)
-#inserir_banco_dados(nome_banco_de_dados, nome_tabela, 30, 50, 60, 80, 50, 26, 60, 30, 82, 56, 10)
+#inserir_banco_dados(nome_banco_de_dados, nome_tabela, 90, 90, 90, 90, 50, 26, 60, 30, 82, 56, 10)
 #imprimir_banco_dados(nome_banco_de_dados, nome_tabela)

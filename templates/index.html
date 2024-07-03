@@ -19,9 +19,8 @@
       <img src="{{ url_for('static', filename='gimscop.svg') }}" alt="Logo">
     </div>
     <ul>
-      <li><a href="/" class="tooltip1" title="Página Inicial"><i class="fas fa-home"></i></a></li>
-      <li><a href="/experimentos" class="tooltip1" title="Experimentos"><i class="fas fa-clock"></i></a></li>
-      <li><a href="/dash" class="tooltip1" title="Dashboard"><i class="fas fa-flask"></i></a></li>
+      <li><a href="/" class="tooltip1" title="Tempo Real"><i class="fas fa-clock"></i></a></li>
+      <li><a href="/experimentos" class="tooltip1" title="Experimentos"><i class="fas fa-flask"></i></a></li>
       <li><a href="/sobre" class="tooltip1" title="Sobre"><i class="fas fa-info-circle"></i></a></li>
     </ul>
   </nav>
@@ -125,38 +124,86 @@
       <h1>Configurações</h1>
       <form id="form">
         <div>
-          <input type="text" id="input_T0" placeholder="T0" class="inputs required">
+          <input type="text" id="input_T0_min" placeholder="T0 min" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_T1" placeholder="T1" class="inputs required">
+          <input type="text" id="input_T0_max" placeholder="T0 max" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_T2" placeholder="T2" class="inputs required">
+          <input type="text" id="input_T1_min" placeholder="T1 min" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_T3" placeholder="T3" class="inputs required">
+          <input type="text" id="input_T1_max" placeholder="T1 max" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_P0" placeholder="P0" class="inputs required">
+          <input type="text" id="input_T2_min" placeholder="T2 min" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_P1" placeholder="P1" class="inputs required">
+          <input type="text" id="input_T2_max" placeholder="T2 max" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_P2" placeholder="P2" class="inputs required">
+          <input type="text" id="input_T3_min" placeholder="T3 min" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_P3" placeholder="P3" class="inputs required">
+          <input type="text" id="input_T3_max" placeholder="T3 max" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_B1" placeholder="B1" class="inputs required">
+          <input type="text" id="input_P0_min" placeholder="P0 min" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_B2" placeholder="B2" class="inputs required">
+          <input type="text" id="input_P0_max" placeholder="P0 max" class="inputs required">
         </div>
         <div>
-          <input type="text" id="input_B3" placeholder="B3" class="inputs required">
+          <input type="text" id="input_P1_min" placeholder="P1 min" class="inputs required">
         </div>
+        <div>
+          <input type="text" id="input_P1_max" placeholder="P1 max" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P2_min" placeholder="P2 min" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P2_max" placeholder="P2 max" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P3_min" placeholder="P3 min" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P3_max" placeholder="P3 max" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B1_min" placeholder="B1 min" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B1_max" placeholder="B1 max" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B2_min" placeholder="B2 min" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B2_max" placeholder="B2 max" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B3_min" placeholder="B3 min" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B3_max" placeholder="B3 max" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_muda_sp" placeholder="muda_sp" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_quanto" placeholder="quanto" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_patamar" placeholder="patamar" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_tempoparafim " placeholder="tempoparafim " class="inputs required">
+        </div>
+
+
+
         <button id="submit-button" type="submit" class="Btn"><b>Editar</b>
           <svg class="svg" viewBox="0 0 512 512">
             <path
@@ -603,7 +650,6 @@
         <ul>
           <li><a href="/">Página Inicial</a></li>
           <li><a href="/experimentos">Experimentos</a></li>
-          <li><a href="/dash">Dashboard</a></li>
           <li><a href="/sobre">Sobre</a></li>
         </ul>
       </div>

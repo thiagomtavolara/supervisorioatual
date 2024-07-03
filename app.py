@@ -4,7 +4,7 @@ import threading
 import subprocess
 import os
 from flask import Flask, render_template, request, jsonify
-from dash_application.dash import create_dash_application
+#from dash_application.dash import create_dash_application
 from flask_socketio import SocketIO, emit
 
 import banco_de_dados_configuracoes
@@ -12,7 +12,7 @@ import banco_de_dados_experimentos
 from escolha_dash import get_data_from_db
 
 app = Flask(__name__)
-create_dash_application(app)
+#create_dash_application(app)
 
 # Defina uma chave secreta para o SocketIO
 app.config['SECRET_KEY'] = 'your_secret_key_here'
@@ -76,7 +76,7 @@ def about():
 @app.route('/start_arduino', methods=['GET'])
 def start_arduino():
     try:
-        arduino_path = r'C:\Users\usuario\AppData\Local\Programs\Arduino IDE\Arduino IDE.exe'
+        arduino_path = r'C:\Users\tmt2102\Desktop\supervisorioatual-main\CodigoGeral_19-12-23.ino'
         subprocess.Popen([arduino_path])
         return jsonify({"status": "success", "message": "Arduino IDE started"})
     except Exception as e:

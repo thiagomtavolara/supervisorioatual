@@ -28,17 +28,33 @@ def criar_banco_dados():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS variaveis (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            T0 REAL NOT NULL,
-            T1 REAL NOT NULL,
-            T2 REAL NOT NULL,
-            T3 REAL NOT NULL,
-            P0 REAL NOT NULL,
-            P1 REAL NOT NULL,
-            P2 REAL NOT NULL,
-            P3 REAL NOT NULL,
-            B1 REAL NOT NULL,
-            B2 REAL NOT NULL,
-            B3 REAL NOT NULL
+            T0_min REAL NOT NULL,
+            T0_max REAL NOT NULL,
+            T1_min REAL NOT NULL,
+            T1_max REAL NOT NULL,
+            T2_min REAL NOT NULL,
+            T2_max REAL NOT NULL,
+            T3_min REAL NOT NULL,
+            T3_max REAL NOT NULL,
+            P0_min REAL NOT NULL,
+            P0_max REAL NOT NULL,
+            P1_min REAL NOT NULL,
+            P1_max REAL NOT NULL,
+            P2_min REAL NOT NULL,
+            P2_max REAL NOT NULL,
+            P3_min REAL NOT NULL,
+            P3_max REAL NOT NULL,
+            B1_min REAL NOT NULL,
+            B1_max REAL NOT NULL,
+            B2_min REAL NOT NULL,
+            B2_max REAL NOT NULL,
+            B3_min REAL NOT NULL,
+            B3_max REAL NOT NULL,
+            Patamar REAL NOT NULL,
+            Quanto REAL NOT NULL,
+            Tempoparafim REAL NOT NULL,
+            Muda_sp REAL NOT NULL 
+            
         )
     ''')
 

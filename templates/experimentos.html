@@ -19,9 +19,8 @@
                         <img src="{{ url_for('static', filename='gimscop.svg') }}" alt="Logo">
                     </div>
                     <ul>
-                        <li><a href="/" class="tooltip1" title="Página Inicial"><i class="fas fa-home"></i></a></li>
-                        <li><a href="/experimentos" class="tooltip1" title="Experimentos"><i class="fas fa-clock"></i></a></li>
-                        <li><a href="/dash" class="tooltip1" title="Dashboard"><i class="fas fa-flask"></i></a></li>
+                        <li><a href="/" class="tooltip1" title="Tempo Real"><i class="fas fa-clock"></i></a></li>
+                        <li><a href="/experimentos" class="tooltip1" title="Experimentos"><i class="fas fa-flask"></i></a></li>
                         <li><a href="/sobre" class="tooltip1" title="Sobre"><i class="fas fa-info-circle"></i></a></li>
                     </ul>
                 </nav>
@@ -41,42 +40,7 @@
             </div>
         </div>
 
-        <!-- Rodapé -->
-        <div class="footer-wrapper">
-            <footer>
-                <div class="footer-content">
-                    <div class="footer-section about">
-                        <h2>Sobre Nós</h2>
-                        <p>Somos uma equipe dedicada ao desenvolvimento de soluções de controle e automação industrial.</p>
-                    </div>
-                    <div class="footer-section links">
-                        <h2>Links Rápidos</h2>
-                        <ul>
-                            <li><a href="/">Página Inicial</a></li>
-                            <li><a href="/experimentos">Experimentos</a></li>
-                            <li><a href="/dash">Dashboard</a></li>
-                            <li><a href="/sobre">Sobre</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section contact">
-                        <h2>Contato</h2>
-                        <div class="contact-info">
-                            <i class="bi bi-envelope"></i><span>contato@gmail.com</span>
-                        </div>
-                        <div class="contact-info">
-                            <i class="bi bi-telephone"></i><span>(11) 1234-5678</span>
-                        </div>
-                        <div class="contact-info">
-                            <i class="bi bi-geo-alt"></i><span>Rua Exemplo, 123 - Cidade, Estado</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    &copy; 2024 Controle. Todos os direitos reservados.
-                </div>
-            </footer>
-        </div>
-    </div>
+        
 
     <script>
         let temperatureChart, weightChart, flowChart;
@@ -208,5 +172,44 @@
         // Chamar a função de ajuste inicialmente
         adjustFooterPosition();
     </script>
+
+
+
+<!-- Rodapé -->
+<div class="footer-wrapper">
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>Sobre Nós</h2>
+                <p>Somos uma equipe dedicada ao desenvolvimento de soluções de controle e automação industrial.</p>
+            </div>
+            <div class="footer-section links">
+                <h2>Links Rápidos</h2>
+                <ul>
+                    <li><a href="/">Página Inicial</a></li>
+                    <li><a href="/experimentos">Experimentos</a></li>
+                    
+                    <li><a href="/sobre">Sobre</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contato</h2>
+                <div class="contact-info">
+                    <i class="bi bi-envelope"></i><span>contato@gmail.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="bi bi-telephone"></i><span>(11) 1234-5678</span>
+                </div>
+                <div class="contact-info">
+                    <i class="bi bi-geo-alt"></i><span>Rua Exemplo, 123 - Cidade, Estado</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Controle. Todos os direitos reservados.
+        </div>
+    </footer>
+</div>
+</div>
 </body>
 </html>
