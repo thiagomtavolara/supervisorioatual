@@ -1,0 +1,221 @@
+/* cores */
+:root {
+    --color-green1: #B8C626ff;
+    --color-green2: #CAD45Fff;
+    --color-dark1: #222222ff;
+    --color-dark2: #1e1e1e;
+    --color-dark3: #333333ff;
+    --color-grey: #d3d3d3d5;
+    --color-blue1: #176090ff;
+    --color-blue2: #176199ff;
+    --color-blue3: #3072A4ff;
+    --color-blue4: #8DA9C4;
+    --color-blue5: #087deb;
+    --color-blue6: #3399f8;
+    --color-blue7: #88bef0;
+    --color-white: #FAF9FEff;
+}
+
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-white);
+}
+h1 {
+    color: var(--color-dark2);
+    text-align: center;
+    /* Centraliza o título */
+
+}
+.texto{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+}
+
+.main-content {
+    text-align: center; /* Centraliza os elementos filhos */
+}
+
+/* Estilo da navbar */
+.navbar {
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    background-color: var(--color-dark3);
+    overflow: hidden;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar li a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Posiciona acima do link */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip1:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Estilo do rodapé */
+.footer-wrapper {
+    width: 100%;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.footer-section {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+.footer-section h2 {
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    padding: 10px 0;
+    border-top: 1px solid #777;
+}
+
+.contact-info {
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    margin-right: 5px;
+}
+
+/* Estilo do conteúdo */
+input[type="date"],
+button {
+    margin: 10px auto; /* Centraliza horizontalmente */
+    display: block; /* Transforma em blocos para ocupar a largura máxima */
+    width: 200px; /* Ajuste o tamanho conforme necessário */
+}
+
+button {
+    padding: 10px 20px; /* Adiciona um pouco de padding para melhorar a aparência */
+    background-color: var(--color-blue6); /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Adiciona borda arredondada */
+    cursor: pointer; /* Mostra o cursor de ponteiro ao passar por cima */
+}
+
+button:hover {
+    background-color: var(--color-blue7); /* Mudança de cor ao passar o mouse */
+}
+
+#message {
+    color: red;
+}
+
+#temperatureChart, #weightChart, #flowChart {
+    margin: 20px;
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .footer-section {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}

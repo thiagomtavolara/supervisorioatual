@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_index.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='gimscop.svg') }}" alt="Logo">
+    </div>
+    <ul>
+      <li><a href="/" class="tooltip1" title="Página Inicial"><i class="fas fa-home"></i></a></li>
+      <li><a href="/experimentos" class="tooltip1" title="Experimentos"><i class="fas fa-clock"></i></a></li>
+      <li><a href="/dash" class="tooltip1" title="Dashboard"><i class="fas fa-flask"></i></a></li>
+      <li><a href="/sobre" class="tooltip1" title="Sobre"><i class="fas fa-info-circle"></i></a></li>
+    </ul>
+  </nav>
+
+  <div class="texto_1">
+    <h1>Supervisório de Controle da Planta de Destilação Multivasos</h1>
+  </div>
+
+  <div class="texto_2">
+    <p>Aqui você poderá controlar o funcionamento da planta em tempo real, assim como acompanhar as atualizações dos
+      dados</p>
+  </div>
+
+  <div class="table-config-atual">
+    <table>
+      <caption>Configurações Atuais</caption>
+      <tr>
+        <th>T0</th>
+        <td><span id="config_T0">{{dados_configuracoes[0][0]}}</span></td>
+        <th>T1</th>
+        <td><span id="config_T1">{{dados_configuracoes[0][1]}}</span></td>
+      </tr>
+
+      <tr>
+        <th>T2</th>
+        <td><span id="config_T2">{{dados_configuracoes[0][2]}}</span></td>
+        <th>T3</th>
+        <td><span id="config_T3">{{dados_configuracoes[0][3]}}</span></td>
+      </tr>
+
+      <tr>
+        <th>P0</th>
+        <td><span id="config_P0">{{dados_configuracoes[0][4]}}</span></td>
+        <th>P1</th>
+        <td><span id="config_P1">{{dados_configuracoes[0][5]}}</span></td>
+      </tr>
+
+      <tr>
+        <th>P2</th>
+        <td><span id="config_P2">{{dados_configuracoes[0][6]}}</span></td>
+        <th>P3</th>
+        <td><span id="config_P3">{{dados_configuracoes[0][7]}}</span></td>
+      </tr>
+
+      <tr>
+        <th>B1</th>
+        <td><span id="config_B1">{{dados_configuracoes[0][8]}}</span></td>
+        <th>B2</th>
+        <td><span id="config_B2">{{dados_configuracoes[0][9]}}</span></td>
+      </tr>
+      <tr>
+        <th>B3</th>
+        <td><span id="config_B3">{{dados_configuracoes[0][10]}}</span></td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="container">
+    <div class="desenho-planta">
+      <img src="{{ url_for('static', filename='desenho planta.jpg') }}" alt="Supervisório">
+    </div>
+    <div class="table-wrapper">
+      <div class="table-container">
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>Reservatório</th>
+              <th>Coluna_1</th>
+              <th>Coluna_2</th>
+              <th>Coluna_3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>T0: <span id="T0">{{dados_experimentos[0][0]}}</span></b></td>
+              <td><b>T1: <span id="T1">{{dados_experimentos[0][1]}}</span></b></td>
+              <td><b>T2: <span id="T2">{{dados_experimentos[0][2]}}</span></b></td>
+              <td><b>T3: <span id="T3">{{dados_experimentos[0][3]}}</span></b></td>
+            </tr>
+            <tr>
+              <td><b>P0: <span id="P0">{{dados_experimentos[0][4]}}</span></b></td>
+              <td><b>P1: <span id="P1">{{dados_experimentos[0][5]}}</span></b></td>
+              <td><b>P2: <span id="P2">{{dados_experimentos[0][6]}}</span></b></td>
+              <td><b>P3: <span id="P3">{{dados_experimentos[0][7]}}</span></b></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><b>B1: <span id="B1">{{dados_experimentos[0][8]}}</span></b></td>
+              <td><b>B2: <span id="B2">{{dados_experimentos[0][9]}}</span></b></td>
+              <td><b>B3: <span id="B3">{{dados_experimentos[0][10]}}</span></b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Configurações ///////////////////////////////-->
+    <div class="content">
+      <h1>Configurações</h1>
+      <form id="form">
+        <div>
+          <input type="text" id="input_T0" placeholder="T0" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_T1" placeholder="T1" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_T2" placeholder="T2" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_T3" placeholder="T3" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P0" placeholder="P0" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P1" placeholder="P1" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P2" placeholder="P2" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_P3" placeholder="P3" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B1" placeholder="B1" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B2" placeholder="B2" class="inputs required">
+        </div>
+        <div>
+          <input type="text" id="input_B3" placeholder="B3" class="inputs required">
+        </div>
+        <button id="submit-button" type="submit" class="Btn"><b>Editar</b>
+          <svg class="svg" viewBox="0 0 512 512">
+            <path
+              d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+            </path>
+          </svg></button>
+      </form>
+      <div id="tooltip" class="tooltip"></div>
+    </div>
+
+  </div>
+
+
+  <!--ATUALIZANDO DADOS DA TABELA ///////////////////////////////-->
+  <script>
+    const socket = io();
+
+    socket.on('connect', function () {
+      console.log('Conectado ao servidor Socket.IO');
+    });
+
+    socket.on('update_data', function (data) {
+      console.log('Dados recebidos:', data);
+      document.getElementById('T0').textContent = data.dados_experimentos[0][0];
+      document.getElementById('T1').textContent = data.dados_experimentos[0][1];
+      document.getElementById('T2').textContent = data.dados_experimentos[0][2];
+      document.getElementById('T3').textContent = data.dados_experimentos[0][3];
+      document.getElementById('P0').textContent = data.dados_experimentos[0][4];
+      document.getElementById('P1').textContent = data.dados_experimentos[0][5];
+      document.getElementById('P2').textContent = data.dados_experimentos[0][6];
+      document.getElementById('P3').textContent = data.dados_experimentos[0][7];
+      document.getElementById('B1').textContent = data.dados_experimentos[0][8];
+      document.getElementById('B2').textContent = data.dados_experimentos[0][9];
+      document.getElementById('B3').textContent = data.dados_experimentos[0][10];
+    });
+
+
+
+  </script>
+
+
+
+
+
+  <!--PEGANDO DADOS VIA Configurações ///////////////////////////////-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('form');
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var inputs = document.querySelectorAll('.inputs');
+        var inputData = {};
+
+        inputs.forEach(function (input) {
+          inputData[input.placeholder] = input.value;
+        });
+
+        fetch('/update_data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(inputData)
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              console.log(data.message);
+              var tooltip = document.createElement('div');
+              tooltip.textContent = 'Editado com sucesso!';
+              tooltip.classList.add('tooltip', 'show');
+
+              var oldTooltip = document.querySelector('.content .tooltip');
+              if (oldTooltip) {
+                oldTooltip.remove();
+              }
+
+              document.querySelector('.content').appendChild(tooltip);
+
+              inputs.forEach(function (input) {
+                input.value = '';
+              });
+
+              // Atualizar os elementos HTML com os novos valores
+              document.getElementById('config_T0').textContent = inputData['T0'];
+              document.getElementById('config_T1').textContent = inputData['T1'];
+              document.getElementById('config_T2').textContent = inputData['T2'];
+              document.getElementById('config_T3').textContent = inputData['T3'];
+              document.getElementById('config_P0').textContent = inputData['P0'];
+              document.getElementById('config_P1').textContent = inputData['P1'];
+              document.getElementById('config_P2').textContent = inputData['P2'];
+              document.getElementById('config_P3').textContent = inputData['P3'];
+              document.getElementById('config_B1').textContent = inputData['B1'];
+              document.getElementById('config_B2').textContent = inputData['B2'];
+              document.getElementById('config_B3').textContent = inputData['B3'];
+
+              setTimeout(function () {
+                tooltip.remove();
+              }, 3000);
+            } else {
+              console.error(data.message);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      });
+    });
+  </script>
+
+
+
+
+  <!-- Botão para começar o experimento E BOTÃO PDF ///////////////////////////-->
+
+  <div class="container2">
+    <!--COMEÇAR-->
+    <input type="checkbox" id="checkbox" />
+    <label for="checkbox" class="switch">
+      <span class="label-text">COMEÇAR</span>
+      <svg class="slider" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z">
+        </path>
+      </svg>
+    </label>
+    <!--PDF-->
+    <div class="pdf" id="pdf">
+      <button class="pdf-btn">
+        <span class="pdf-wrapper">
+          <span class="pdf-container">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 92 75">
+              <path stroke-width="5" stroke="black"
+                d="M12 37.5H80C85.2467 37.5 89.5 41.7533 89.5 47V69C89.5 70.933 87.933 72.5 86 72.5H6C4.067 72.5 2.5 70.933 2.5 69V47C2.5 41.7533 6.75329 37.5 12 37.5Z">
+              </path>
+              <mask fill="white" id="path-2-inside-1_30_7">
+                <path d="M12 12C12 5.37258 17.3726 0 24 0H57C70.2548 0 81 10.7452 81 24V29H12V12Z"></path>
+              </mask>
+              <path mask="url(#path-2-inside-1_30_7)" fill="black"
+                d="M7 12C7 2.61116 14.6112 -5 24 -5H57C73.0163 -5 86 7.98374 86 24H76C76 13.5066 67.4934 5 57 5H24C20.134 5 17 8.13401 17 12H7ZM81 29H12H81ZM7 29V12C7 2.61116 14.6112 -5 24 -5V5C20.134 5 17 8.13401 17 12V29H7ZM57 -5C73.0163 -5 86 7.98374 86 24V29H76V24C76 13.5066 67.4934 5 57 5V-5Z">
+              </path>
+              <circle fill="black" r="3" cy="49" cx="78"></circle>
+            </svg>
+          </span>
+          <span class="pdf-page-wrapper">
+            <span class="pdf-page"></span>
+          </span>
+        </span>
+        PDF
+      </button>
+    </div>
+  </div>
+  <div class="terminal-loader hidden">
+    <div class="terminal-header">
+      <div class="terminal-title">Status</div>
+      <div class="terminal-controls">
+        <div class="control close"></div>
+        <div class="control minimize"></div>
+        <div class="control maximize"></div>
+      </div>
+    </div>
+    <div class="text">Experimento em execução...</div>
+  </div>
+  <script>
+    const checkbox = document.getElementById('checkbox');
+    const labelText = document.querySelector('.label-text');
+    const terminalLoader = document.querySelector('.terminal-loader');
+
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        labelText.textContent = 'PARAR';
+        terminalLoader.classList.remove('hidden');
+
+        // Fazendo uma requisição para iniciar o Arduino IDE
+        fetch('/start_arduino')
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              console.log(data.message);
+            } else {
+              console.error(data.message);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        labelText.textContent = 'COMEÇAR';
+        terminalLoader.classList.add('hidden');
+      }
+    });
+  </script>
+
+  <!-- Abaixo tudo que tem haver com o gráfico ///////////////////////////////////////////////-->
+  <div class="container3">
+  <div id="wrapper">
+    <div class="content-area">
+      <div class="container-fluid">
+        <div class="main">
+
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <div class="box mt-4">
+                <div id="tempchart"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="box mt-4">
+                <div id="weightchart"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="box mt-4">
+                <div id="flowchart"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="float-right edit-on-codepen"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script>
+    // Define ApexCharts global options
+    window.Apex = {
+      chart: {
+        foreColor: "#1e1e1e",
+        toolbar: {
+          show: true
+        }
+      },
+      colors: ["#FCCF31", "#17ead9", "#f02fc2", "#F55555", "#6078ea", "#6094ea"],
+      stroke: {
+        width: 3
+      },
+      dataLabels: {
+        enabled: false
+      },
+      grid: {
+        borderColor: "#333333ff"
+      },
+      xaxis: {
+        axisTicks: {
+          color: "#1e1e1e"
+        },
+        axisBorder: {
+          color: "#1e1e1e"
+        }
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          gradientToColors: ["#F55555", "#6078ea", "#6094ea"]
+        }
+      },
+      tooltip: {
+        theme: "dark",
+        x: {
+          formatter: function (val) {
+            return new Date(val).toLocaleTimeString();
+          }
+        }
+      },
+      yaxis: {
+        decimalsInFloat: 2,
+        opposite: true,
+        labels: {
+          offsetX: -10
+        }
+      }
+    };
+
+    // Create temperature chart
+    var tempOptions = {
+      chart: {
+        height: 350,
+        type: 'line',
+        animations: {
+          enabled: true,
+          easing: 'linear',
+          dynamicAnimation: {
+            speed: 1000
+          }
+        }
+      },
+      series: [
+        { name: 'T0', data: [] },
+        { name: 'T1', data: [] },
+        { name: 'T2', data: [] },
+        { name: 'T3', data: [] }
+      ],
+      xaxis: {
+        type: 'datetime',
+        range: 300000 // 5 minutes
+      },
+      title: {
+        text: 'Temperatura',
+        align: 'left',
+        style: {
+          fontSize: '12px'
+        }
+      }
+    };
+
+    var tempChart = new ApexCharts(document.querySelector("#tempchart"), tempOptions);
+    tempChart.render();
+
+    // Create weight chart
+    var weightOptions = {
+      chart: {
+        height: 350,
+        type: 'line',
+        animations: {
+          enabled: true,
+          easing: 'linear',
+          dynamicAnimation: {
+            speed: 1000
+          }
+        }
+      },
+      series: [
+        { name: 'P0', data: [] },
+        { name: 'P1', data: [] },
+        { name: 'P2', data: [] },
+        { name: 'P3', data: [] }
+      ],
+      xaxis: {
+        type: 'datetime',
+        range: 300000 // 5 minutes
+      },
+      title: {
+        text: 'Peso',
+        align: 'left',
+        style: {
+          fontSize: '12px'
+        }
+      }
+    };
+
+    var weightChart = new ApexCharts(document.querySelector("#weightchart"), weightOptions);
+    weightChart.render();
+
+    // Create flow chart
+    var flowOptions = {
+      chart: {
+        height: 350,
+        type: 'line',
+        animations: {
+          enabled: true,
+          easing: 'linear',
+          dynamicAnimation: {
+            speed: 1000
+          }
+        }
+      },
+      series: [
+        { name: 'B1', data: [] },
+        { name: 'B2', data: [] },
+        { name: 'B3', data: [] }
+      ],
+      xaxis: {
+        type: 'datetime',
+        range: 300000 // 5 minutes
+      },
+      title: {
+        text: 'Vazão',
+        align: 'left',
+        style: {
+          fontSize: '12px'
+        }
+      }
+    };
+
+    var flowChart = new ApexCharts(document.querySelector("#flowchart"), flowOptions);
+    flowChart.render();
+
+    // Connect to Socket.io
+    var meusocket = io.connect();
+
+    meusocket.on('update_data', function (data) {
+      console.log('Dados recebidos:', data);
+
+      var currentTime = new Date().getTime();
+      var newTempData = [
+        { x: currentTime, y: data.dados_experimentos[0][0] },
+        { x: currentTime, y: data.dados_experimentos[0][1] },
+        { x: currentTime, y: data.dados_experimentos[0][2] },
+        { x: currentTime, y: data.dados_experimentos[0][3] }
+      ];
+      var newWeightData = [
+        { x: currentTime, y: data.dados_experimentos[0][4] },
+        { x: currentTime, y: data.dados_experimentos[0][5] },
+        { x: currentTime, y: data.dados_experimentos[0][6] },
+        { x: currentTime, y: data.dados_experimentos[0][7] }
+      ];
+      var newFlowData = [
+        { x: currentTime, y: data.dados_experimentos[0][8] },
+        { x: currentTime, y: data.dados_experimentos[0][9] },
+        { x: currentTime, y: data.dados_experimentos[0][10] }
+      ];
+
+      tempChart.updateSeries([
+        { data: [...tempChart.w.config.series[0].data, newTempData[0]] },
+        { data: [...tempChart.w.config.series[1].data, newTempData[1]] },
+        { data: [...tempChart.w.config.series[2].data, newTempData[2]] },
+        { data: [...tempChart.w.config.series[3].data, newTempData[3]] }
+      ]);
+
+      weightChart.updateSeries([
+        { data: [...weightChart.w.config.series[0].data, newWeightData[0]] },
+        { data: [...weightChart.w.config.series[1].data, newWeightData[1]] },
+        { data: [...weightChart.w.config.series[2].data, newWeightData[2]] },
+        { data: [...weightChart.w.config.series[3].data, newWeightData[3]] }
+      ]);
+
+      flowChart.updateSeries([
+        { data: [...flowChart.w.config.series[0].data, newFlowData[0]] },
+        { data: [...flowChart.w.config.series[1].data, newFlowData[1]] },
+        { data: [...flowChart.w.config.series[2].data, newFlowData[2]] }
+      ]);
+    });
+  </script>
+
+
+
+
+
+
+
+  <!-- Rodapé ///////////////////////////////-->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>Sobre Nós</h2>
+        <p>Somos uma equipe dedicada ao desenvolvimento de soluções de controle e automação industrial.</p>
+      </div>
+      <div class="footer-section links">
+        <h2>Links Rápidos</h2>
+        <ul>
+          <li><a href="/">Página Inicial</a></li>
+          <li><a href="/experimentos">Experimentos</a></li>
+          <li><a href="/dash">Dashboard</a></li>
+          <li><a href="/sobre">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact">
+        <h2>Contato</h2>
+        <div class="contact-info">
+          <i class="bi bi-envelope"></i><span>contato@gmail.com</span>
+        </div>
+        <div class="contact-info">
+          <i class="bi bi-telephone"></i><span>(11) 1234-5678</span>
+        </div>
+        <div class="contact-info">
+          <i class="bi bi-geo-alt"></i><span>Rua Exemplo, 123 - Cidade, Estado</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2024 Controle. Todos os direitos reservados.
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>

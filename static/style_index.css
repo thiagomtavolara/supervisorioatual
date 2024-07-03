@@ -1,0 +1,811 @@
+/* cores ////////////////////////////////////*/
+:root {
+    --color-green1: #B8C626ff;
+    --color-green2: #CAD45Fff;
+    --color-dark1: #222222ff;
+    --color-dark2: #1e1e1e;
+    --color-dark3: #333333ff;
+    --color-grey: #d3d3d3d5;
+    --color-blue1: #176090ff;
+    --color-blue2: #176199ff;
+    --color-blue3: #3072A4ff;
+    --color-blue4: #8DA9C4;
+    --color-blue5: #087deb;
+    --color-blue6: #3399f8;
+    --color-blue7: #88bef0;
+
+    --color-white: #FAF9FEff;
+}
+
+
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-white);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    background-color: var(--color-dark3);
+    overflow: hidden;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    /* Definindo a largura como auto para que acompanhe o conteúdo */
+    max-width: 100%;
+    /* Definindo a largura máxima como 100% */
+    margin: 0 auto;
+    /* Centraliza a navbar na página */
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar li a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar li a:hover {
+    color: var(--color-white);
+}
+
+
+
+.texto_1,
+.texto_2 {
+    width: 100%;
+    /* Ocupa toda a largura disponível */
+    text-align: center;
+    color: var(--color-white);
+    /* Altera a cor do texto para branco */
+    margin: 20px auto;
+    /* Centraliza o texto com margem */
+}
+
+.table-config-atual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.table-config-atual table {
+    border-collapse: collapse;
+    text-align: center;
+    /* Centraliza o texto na tabela */
+    width: auto;
+    /* Permite que a tabela se ajuste ao conteúdo */
+}
+
+.table-config-atual th,
+.table-config-atual td {
+    border: 1px solid var(--color-white);
+    padding: 8px;
+    text-align: center;
+    /* Centraliza o texto em cada célula */
+    vertical-align: middle;
+    /* Centraliza o texto verticalmente */
+}
+
+.table-config-atual th {
+    background-color: var(--color-blue6);
+    color: var(--color-dark2);
+}
+
+.table-config-atual caption {
+    caption-side: top;
+    font-size: 1.5em;
+    margin: 10px 0;
+    text-align: center;
+    /* Centraliza o texto do caption */
+}
+
+
+
+
+
+
+
+.tooltip {
+    display: none;
+    /* Começa oculto por padrão */
+
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 999;
+    /* Certifique-se de que o tooltip esteja na frente de outros elementos */
+    left: 50%;
+    /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    /* Centraliza horizontalmente */
+}
+
+.tooltip1 {
+
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 999;
+    /* Certifique-se de que o tooltip esteja na frente de outros elementos */
+    left: 50%;
+    /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    /* Centraliza horizontalmente */
+}
+
+
+
+.tooltip.show {
+    display: block;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 80%;
+    /* Define a largura máxima como 100% */
+    margin: 20px auto;
+    /* Centraliza o container com margem */
+
+}
+
+
+h1 {
+    color: var(--color-dark2);
+    text-align: center;
+    /* Centraliza o título */
+
+}
+
+p {
+    color: var(--color-dark1);
+    text-align: center;
+    /* Centraliza o parágrafo */
+}
+
+.desenho-planta {
+    text-align: center;
+    /* Centraliza horizontalmente */
+}
+
+.desenho-planta img {
+    max-width: 100%;
+    /* Define a largura máxima da imagem como 100% da div pai */
+    height: auto;
+    /* Mantém a proporção da imagem */
+}
+
+
+
+/* Estilo da tabela /////////////////////////////// */
+
+
+table {
+    border: 1px solid var(--color-dark2);
+    border-collapse: collapse;
+    background-color: var(--color-green1);
+    width: 100%;
+    /* Define a largura da tabela como 100% */
+    margin: 0 auto 20px;
+    /* Centraliza a tabela com margem inferior */
+
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+
+
+th {
+    background-color: var(--color-blue2);
+    color: var(--color-white);
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-green2);
+}
+
+
+
+/* Estilo da tabela para dispositivos móveis */
+@media screen and (max-width: 600px) {
+    .table-wrapper {
+        width: 100%;
+        /* Garante que a div ocupe toda a largura disponível */
+        display: flex;
+        /* Usa flexbox para centralizar */
+        justify-content: center;
+        /* Centraliza horizontalmente */
+    }
+
+    table {
+        width: 100%;
+        /* Faz a tabela ocupar toda a largura */
+        max-width: 90%;
+        /* Define uma largura máxima para a tabela */
+        margin: 0;
+        /* Remove todas as margens */
+        padding: 0;
+        /* Remove todos os preenchimentos */
+    }
+
+    th,
+    td {
+        padding: 10px;
+        /* Reduz o padding das células */
+    }
+
+    .table-container table {
+        max-width: none;
+        /* Remove a largura máxima */
+    }
+
+    th,
+    td {
+        font-size: 14px;
+        /* Reduz o tamanho da fonte das células */
+        gap: 20px;
+
+    }
+
+
+}
+
+/* //////////////////////////////////////////////////////// */
+
+
+/* Estilo formulário ///////////////////////////////////////*/
+
+.content {
+    background-color: var(--color-green1);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    /* Definindo uma largura fixa */
+    max-width: 200px;
+    /* Definindo uma largura máxima para garantir responsividade */
+    margin: 0 auto;
+    /* Centralizando horizontalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centralizando verticalmente */
+    gap: 1rem;
+
+}
+
+
+.content form {
+    display: grid;
+    /* Troque flex-direction: column por grid */
+    grid-template-columns: repeat(2, 1fr);
+    /* Duas colunas com largura igual */
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+
+.content .label {
+    font-size: 15px;
+    padding-left: 10px;
+    position: absolute;
+    top: 13px;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.inputs {
+
+    padding: 8px 5px;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--color-white);
+    border: 2px solid var(--color-dark1);
+    color: var(--color-dark2);
+    width: calc(100% - 10px);
+    /* Ajusta a largura dos inputs para evitar quebras de linha */
+    box-sizing: border-box;
+    transition: .3s;
+
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+
+.inputs:focus {
+    border-color: var(--color-blue1);
+    border-width: 3px;
+    border: 3px solid var(--color-blue1);
+    color: var(--color-dark1);
+
+
+}
+
+/* //////////////////////////////////////////////////////// */
+
+
+
+
+
+/* Estilo do botão EDITAR //////////////////////////// */
+.Btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100px;
+    height: 40px;
+    border: none;
+    padding: 0px 20px;
+    background-color: var(--color-grey);
+    color: var(--color-dark1);
+    letter-spacing: 1.5px;
+    font-size: 13px;
+
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px var(--color-dark1);
+    transition-duration: .3s;
+}
+
+.svg {
+    width: 13px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    fill: var(--color-dark1);
+    transition-duration: .3s;
+}
+
+.Btn:hover {
+    color: transparent;
+}
+
+.Btn:hover svg {
+    right: 43%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition-duration: .3s;
+}
+
+.Btn:active {
+    transform: translate(3px, 3px);
+    transition-duration: .3s;
+    box-shadow: 2px 2px 0px rgb(140, 32, 212);
+}
+
+/* //////////////////////////////////////////////////////// */
+
+
+
+
+
+/* //// Estilo do botão COMEÇAR  //////////////////////////////// */
+
+.container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#checkbox {
+    display: none;
+}
+
+.switch {
+    position: relative;
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: var(--color-dark1);
+    border-radius: 50px;
+    z-index: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--color-white);
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.switch svg path {
+    fill: var(--color-white);
+}
+
+#checkbox:checked+.switch {
+    background-color: var(--color-blue3);
+    box-shadow: 0px 0px 5px var(--color-blue3);
+}
+
+/* //////////////////////////////////////////////////////// */
+
+
+
+
+
+
+/*// Estilos do cursor e animação PARA STATUS ///////////////////////////*/
+.hidden {
+    display: none;
+}
+
+@keyframes blinkCursor {
+    50% {
+        border-right-color: transparent;
+    }
+}
+
+@keyframes typeAndDelete {
+
+    0%,
+    10% {
+        width: 0;
+    }
+
+    45%,
+    55% {
+        width: 20em;
+    }
+
+    90%,
+    100% {
+        width: 0;
+    }
+}
+
+.terminal-loader {
+    border: 0.1em solid var(--color-dark3);
+    background-color: var(--color-grey);
+    color: var(--color-dark1);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1em;
+    padding: 1.5em 1em;
+    width: 18em;
+    margin: 100px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.terminal-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5em;
+    background-color: #333;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 0 0.4em;
+    box-sizing: border-box;
+}
+
+.terminal-controls {
+    float: right;
+}
+
+.control {
+    display: inline-block;
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 0.4em;
+    border-radius: 50%;
+    background-color: #777;
+}
+
+.control.close {
+    background-color: var(--color-blue7);
+}
+
+.control.minimize {
+    background-color: var(--color-blue6);
+}
+
+.control.maximize {
+    background-color: var(--color-blue5);
+}
+
+.terminal-title {
+    float: left;
+    line-height: 1.5em;
+    color: #eee;
+}
+
+.text {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 0.2em solid var(--color-blue5);
+    animation: typeAndDelete 4s steps(11) infinite, blinkCursor 0.5s step-end infinite alternate;
+    margin-top: 1.5em;
+}
+
+/* //////////////////////////////////////////////////////// */
+
+
+
+/* /////////////// GRÁFICOS//////////////////////////////////////*/
+
+
+
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    font-weight: 600;
+}
+
+.container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Adjust if necessary based on your layout */
+    gap: 1rem; /* Adjust the gap between items as needed */
+    max-width: 80%; /* Adjust the maximum width as per your design */
+    margin: 20px auto; /* Center horizontally with top and bottom margin */
+}
+.box .apexcharts-xaxistooltip {
+    background: var(--color-white);
+    color: var(--color-dark1);
+}
+
+.content-area {
+    max-width: 1280px;
+
+}
+
+.box {
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    background-color: var(--color-white);
+    padding: 25px; /* Aumente o padding conforme necessário */
+    border-radius: 4px;
+    width: 100%; /* Ajuste a largura do box para ocupar mais espaço */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .box{
+        width: 82%; /* Ajuste a largura do box para ocupar mais espaço */
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
+
+.columnbox {
+    padding-right: 15px;
+}
+
+.radialbox {
+    max-height: 333px;
+    margin-bottom: 60px;
+}
+
+.apexcharts-legend-series tspan:nth-child(3) {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.edit-on-codepen {
+    text-align: right;
+    width: 100%;
+    padding: 0 20px 40px;
+    position: relative;
+    top: -30px;
+    cursor: pointer;
+}
+
+.spinner-border {
+    display: none;
+}
+
+
+/* //////////////////////////////////////////////////////// */
+
+
+
+/*/////// Rodape ///////////////////////////////////////*/
+
+footer {
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    margin-top: 80px;
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.footer-section {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+.footer-section h2 {
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    padding: 10px 0;
+    border-top: 1px solid #777;
+}
+
+.contact-info {
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    margin-right: 5px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .footer-section {
+        flex-basis: 100%;
+        /* Take full width */
+        max-width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+    }
+}
+
+/* //////////////////////////////////////////////////////// */
+
+/* ///////PDF GRÁFICOS ///////////////////////////////////////////////// */
+.pdf {
+    display: flex;
+}
+
+.pdf-btn {
+
+    width: 100px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-dark1);
+    border-radius: 10px;
+    gap: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    font-weight: 500;
+    box-shadow: 0px 10px 10px var(--color-dark1);
+    transition: all 0.3s;
+}
+
+.pdf-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 100%;
+}
+
+.pdf-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.pdf-container svg {
+    width: 100%;
+    height: auto;
+    transform: translateY(4px);
+}
+
+.pdf-page-wrapper {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.pdf-page {
+    width: 70%;
+    height: 10px;
+    border: 1px solid var(--color-dark1);
+    background-color: var(--color-white);
+    transform: translateY(0px);
+    transition: all 0.3s;
+    transform-origin: top;
+}
+
+.pdf-btn:hover .pdf-page {
+    height: 16px;
+    background-color: var(--color-white);
+}
+
+.pdf-btn:hover {
+    background-color: var(--color-white);
+}
+
+/* //////////////////////////////////////////////////////// */
